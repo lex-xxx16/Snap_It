@@ -8,7 +8,7 @@ $booking = null;
 
 if (!empty($bookingId)) {
     $stmt = mysqli_prepare($conn, "SELECT b.booking_id, b.event_name, b.event_date, b.total_amount, b.package_price, b.addon_price, b.status,
-                                          u.user_id, u.name, u.email, u.phone, u.address
+                                          u.user_id, u.name, u.email
                                    FROM bookings b INNER JOIN users u ON b.user_id = u.user_id
                                    WHERE b.booking_id = ? LIMIT 1");
     mysqli_stmt_bind_param($stmt, 'i', $bookingId);
@@ -84,9 +84,6 @@ require __DIR__ . '/../includes/alert.php';
 
                             <dt class="col-sm-4">Email</dt>
                             <dd class="col-sm-8"><?= e($booking['email']) ?></dd>
-
-                            <dt class="col-sm-4">Phone</dt>
-                            <dd class="col-sm-8"><?= e($booking['phone'] ?? '-') ?></dd>
 
                             <dt class="col-sm-4">Status</dt>
                             <dd class="col-sm-8">

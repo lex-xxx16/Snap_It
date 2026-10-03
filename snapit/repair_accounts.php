@@ -49,9 +49,9 @@ if ($connectionOk) {
 
 if ($usersTableExists) {
     $checkAccounts = [
-        ['email' => 'admin@snapit.ph',    'plain' => 'admin123', 'role' => 'admin',    'name' => 'Admin User',     'phone' => '09170000000', 'address' => '123 Snap It HQ, Manila'],
-        ['email' => 'staff@snapit.ph',    'plain' => 'staff123', 'role' => 'staff',    'name' => 'Staff Member',   'phone' => '09171111111', 'address' => '456 Booth Ave, QC'],
-        ['email' => 'customer@snapit.ph', 'plain' => 'cust123',  'role' => 'customer', 'name' => 'Customer Demo',  'phone' => '09272222222', 'address' => '789 Customer St, Makati'],
+        ['email' => 'admin@snapit.ph',    'plain' => 'admin123', 'role' => 'admin',    'name' => 'Admin User'],
+        ['email' => 'staff@snapit.ph',    'plain' => 'staff123', 'role' => 'staff',    'name' => 'Staff Member'],
+        ['email' => 'customer@snapit.ph', 'plain' => 'cust123',  'role' => 'customer', 'name' => 'Customer Demo'],
     ];
 
     foreach ($checkAccounts as &$acc) {
@@ -77,8 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $usersTableExists && isset($_POST['
             mysqli_stmt_bind_param($upd, 'ss', $acc['new_hash'], $acc['email']);
             if (mysqli_stmt_execute($upd)) $fixed++;
         } else {
-            $ins = mysqli_prepare($conn, "INSERT INTO users (name, email, password, phone, address, role, status) VALUES (?, ?, ?, ?, ?, ?, 'active')");
-            mysqli_stmt_bind_param($ins, 'ssssss', $acc['name'], $acc['email'], $acc['new_hash'], $acc['phone'], $acc['address'], $acc['role']);
+            $ins = mysqli_prepare($conn, "INSERT INTO users (name, email, password, role, status) VALUES (?, ?, ?, ?, 'active')");
+            mysqli_stmt_bind_param($ins, 'ssss', $acc['name'], $acc['email'], $acc['new_hash'], $acc['role']);
             if (mysqli_stmt_execute($ins)) $created++;
         }
     }

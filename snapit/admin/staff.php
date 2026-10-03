@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $stmt = mysqli_prepare($conn, "
-    SELECT user_id, name, email, phone, role, status, created_at
+    SELECT user_id, name, email, role, status, created_at
     FROM users
     WHERE role IN ('staff','admin')
     ORDER BY role DESC, created_at ASC

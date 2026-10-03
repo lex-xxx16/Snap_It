@@ -7,7 +7,7 @@ if (is_loggedin()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
+    $email = strtolower(trim($_POST['email'] ?? ''));
     $password = trim($_POST['password'] ?? '');
 
     if (empty($email) || empty($password)) {
@@ -27,7 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect(site_url('users/login.php'));
         }
         if (password_verify($password, $row['password'])) {
-            $_SESSION['user_id'] = $row['user_id'];
+            // Fresh session id and an empty session: nothing left over from a previous
+            // visitor on this browser (booth session, old name, CSRF token) can carry
+            // into this account.
+            session_regenerate_id(true);
+            $_SESSION = [];
+            $_SESSION['user_id'] = (int)$row['user_id'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['name'] = $row['name'];
             $_SESSION['role'] = $row['role'];

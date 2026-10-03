@@ -1,8 +1,8 @@
 
-INSERT INTO users (name, email, password, phone, address, role, status) VALUES
-('Admin User', 'admin@snapit.ph', '$2y$12$NpXATJzDUz.C3YBjhHy9oOIUwNyWabZM4aI0F2Y92OdcIPfDNV9Fq', '09170000000', '123 Snap It HQ, Manila', 'admin', 'active'),
-('Staff Member', 'staff@snapit.ph', '$2y$12$oF8ldqAS61ZTi5NPsJZSCufzZiowueIboPY63QRU8KwiHLocYYhFO', '09171111111', '456 Booth Ave, QC', 'staff', 'active'),
-('Customer Demo', 'customer@snapit.ph', '$2y$12$Phl6741oilQU70juuuwACuRgvsQUj5lSpEVXEPvLMGsaRU1anHdZu', '09272222222', '789 Customer St, Makati', 'customer', 'active');
+INSERT INTO users (name, email, password, role, status) VALUES
+('Admin User', 'admin@snapit.ph', '$2y$12$NpXATJzDUz.C3YBjhHy9oOIUwNyWabZM4aI0F2Y92OdcIPfDNV9Fq', 'admin', 'active'),
+('Staff Member', 'staff@snapit.ph', '$2y$12$oF8ldqAS61ZTi5NPsJZSCufzZiowueIboPY63QRU8KwiHLocYYhFO', 'staff', 'active'),
+('Customer Demo', 'customer@snapit.ph', '$2y$12$Phl6741oilQU70juuuwACuRgvsQUj5lSpEVXEPvLMGsaRU1anHdZu', 'customer', 'active');
 
 INSERT INTO packages (name, description, duration_hours, softcopy_count, hardcopy_count, base_price, has_softcopy_addon, softcopy_addon_price, is_active) VALUES
 ('Solo Event Package', 'Perfect for intimate gatherings and small events.', 6, 500, 200, 8000.00, 1, 1500.00, 1),

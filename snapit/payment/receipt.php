@@ -11,7 +11,7 @@ if (empty($paymentId)) {
 
 $stmt = mysqli_prepare($conn, "SELECT p.payment_id, p.or_number, p.amount_paid, p.payment_method, p.payment_date, p.notes,
                                       b.booking_id, b.event_name, b.event_date, b.package_price, b.addon_price, b.total_amount,
-                                      u.name AS customer_name, u.email, u.phone, u.address,
+                                      u.name AS customer_name, u.email,
                                       s.name AS collected_by_name
                                FROM payments p
                                INNER JOIN bookings b ON p.booking_id = b.booking_id
@@ -98,12 +98,6 @@ require __DIR__ . '/../includes/alert.php';
             <div><strong>Customer:</strong> <?= e($payment['customer_name']) ?></div>
             <?php if (!empty($payment['email'])): ?>
                 <div style="margin-left: 0; padding-left: 0;"><strong>Email:</strong> <?= e($payment['email']) ?></div>
-            <?php endif; ?>
-            <?php if (!empty($payment['phone'])): ?>
-                <div style="margin-left: 0; padding-left: 0;"><strong>Phone:</strong> <?= e($payment['phone']) ?></div>
-            <?php endif; ?>
-            <?php if (!empty($payment['address'])): ?>
-                <div style="margin-left: 0; padding-left: 0;"><strong>Address:</strong> <?= e($payment['address']) ?></div>
             <?php endif; ?>
         </div>
 

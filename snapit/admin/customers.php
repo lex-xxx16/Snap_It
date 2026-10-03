@@ -31,7 +31,7 @@ $search_term = "%{$search}%";
 
 if (!empty($search)) {
     $stmt = mysqli_prepare($conn, "
-        SELECT user_id, name, email, phone, status, created_at
+        SELECT user_id, name, email, status, created_at
         FROM users
         WHERE role = 'customer' AND (name LIKE ? OR email LIKE ?)
         ORDER BY created_at DESC
@@ -39,7 +39,7 @@ if (!empty($search)) {
     mysqli_stmt_bind_param($stmt, 'ss', $search_term, $search_term);
 } else {
     $stmt = mysqli_prepare($conn, "
-        SELECT user_id, name, email, phone, status, created_at
+        SELECT user_id, name, email, status, created_at
         FROM users
         WHERE role = 'customer'
         ORDER BY created_at DESC
@@ -109,7 +109,6 @@ include __DIR__ . '/../includes/alert.php';
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
                             <th>Status</th>
                             <th>Registered</th>
                             <th class="text-end">Action</th>
@@ -136,7 +135,6 @@ include __DIR__ . '/../includes/alert.php';
                                             <?= e($c['email']) ?>
                                         </a>
                                     </td>
-                                    <td><?= e($c['phone'] ?? '-') ?></td>
                                     <td>
                                         <span class="badge rounded-pill px-3 py-2 <?= e(status_badge_class($c['status'])) ?>">
                                             <?= e(ucfirst($c['status'])) ?>

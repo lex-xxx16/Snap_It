@@ -1,5 +1,29 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
+    // Only accept session ids this server issued, and keep the cookie away from JavaScript.
+    ini_set('session.use_strict_mode', '1');
+    ini_set('session.use_only_cookies', '1');
+    session_set_cookie_params(['httponly' => true, 'samesite' => 'Lax']);
+    session_start();
+}
+
+// Never let the browser keep a copy of a page. After logout, the Back button has to
+// ask the server again, and the server will find no logged-in session.
+if (!headers_sent()) {
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+}
+
+// Completely end the current login: wipe every session value (user, role, booth session,
+// CSRF token), destroy the session on the server, then start a new empty session with a
+// brand-new id so a flash message can still be shown on the login page.
+function destroy_login_session() {
+    $_SESSION = [];
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        session_destroy();
+    }
+    session_id(session_create_id());
     session_start();
 }
 

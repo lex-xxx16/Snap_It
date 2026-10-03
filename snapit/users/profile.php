@@ -8,19 +8,14 @@ $user_id = $_SESSION['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
-    $phone = trim($_POST['phone'] ?? '');
-    $address = trim($_POST['address'] ?? '');
 
     $errors = [];
 
     if (empty($name)) {
         $errors[] = 'Full name is required.';
     }
-    if (empty($phone)) {
-        $errors[] = 'Phone number is required.';
-    }
-    if (empty($address)) {
-        $errors[] = 'Address is required.';
+    if (strlen($name) > 150) {
+        $errors[] = 'Full name is too long (150 characters maximum).';
     }
 
     if (!empty($errors)) {
@@ -28,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         redirect(site_url('users/profile.php'));
     }
 
-    $update_stmt = mysqli_prepare($conn, "UPDATE users SET name = ?, phone = ?, address = ? WHERE user_id = ?");
-    mysqli_stmt_bind_param($update_stmt, 'sssi', $name, $phone, $address, $user_id);
+    $update_stmt = mysqli_prepare($conn, "UPDATE users SET name = ? WHERE user_id = ?");
+    mysqli_stmt_bind_param($update_stmt, 'si', $name, $user_id);
 
     if (mysqli_stmt_execute($update_stmt)) {
         $_SESSION['name'] = $name;
@@ -41,15 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect(site_url('users/profile.php'));
 }
 
-$user_stmt = mysqli_prepare($conn, "SELECT user_id, name, email, phone, address, role, status, created_at FROM users WHERE user_id = ? LIMIT 1");
+$user_stmt = mysqli_prepare($conn, "SELECT user_id, name, email, role, status, created_at FROM users WHERE user_id = ? LIMIT 1");
 mysqli_stmt_bind_param($user_stmt, 'i', $user_id);
 mysqli_stmt_execute($user_stmt);
 $user_result = mysqli_stmt_get_result($user_stmt);
 $user = mysqli_fetch_assoc($user_result);
 
 if (!$user) {
-    session_unset();
-    session_destroy();
+    destroy_login_session();
     set_flash('Session expired. Please login again.', 'warning');
     redirect(site_url('users/login.php'));
 }
@@ -89,22 +83,6 @@ require __DIR__ . '/../includes/alert.php';
                     </div>
                 </div>
             </div>
-
-            <div class="card shadow-sm border-0">
-                <div class="card-body p-4">
-                    <h6 class="fw-bold mb-3"><i class="fa-solid fa-id-card me-2" style="color:#6f42c1"></i>Contact Details</h6>
-                    <ul class="list-unstyled mb-0 small">
-                        <li class="mb-2">
-                            <i class="fa-solid fa-phone me-2 text-muted"></i>
-                            <span class="fw-medium"><?= e($user['phone'] ?? '-') ?></span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fa-solid fa-location-dot me-2 text-muted"></i>
-                            <span class="fw-medium"><?= e($user['address'] ?? '-') ?></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
 
         <div class="col-lg-8">
@@ -130,23 +108,6 @@ require __DIR__ . '/../includes/alert.php';
                                 <input type="email" class="form-control" id="email" value="<?= e($user['email']) ?>" readonly disabled>
                             </div>
                             <div class="form-text">Email cannot be changed.</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="phone" class="form-label fw-semibold">Phone Number</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                <input type="tel" class="form-control" id="phone" name="phone"
-                                    value="<?= e($user['phone'] ?? '') ?>" required>
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="address" class="form-label fw-semibold">Complete Address</label>
-                            <div class="input-group">
-                                <span class="input-group-text align-top"><i class="fa-solid fa-location-dot mt-2"></i></span>
-                                <textarea class="form-control" id="address" name="address" rows="3" required><?= e($user['address'] ?? '') ?></textarea>
-                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-snapit fw-semibold px-4">

@@ -12,7 +12,7 @@ if ($booking_id <= 0) {
 $stmt = mysqli_prepare($conn, "SELECT b.*, p.name AS package_name, p.description AS package_description,
     p.duration_hours AS package_duration, p.softcopy_count AS pkg_softcopy_count,
     p.hardcopy_count AS pkg_hardcopy_count, p.has_softcopy_addon, p.softcopy_addon_price,
-    u.name AS customer_name, u.email AS customer_email, u.phone AS customer_phone, u.address AS customer_address
+    u.name AS customer_name, u.email AS customer_email
     FROM bookings b
     INNER JOIN packages p ON b.package_id = p.package_id
     INNER JOIN users u ON b.user_id = u.user_id
@@ -337,12 +337,6 @@ include __DIR__ . '/../includes/alert.php';
                     <div class="card-body p-4">
                         <h6 class="fw-bold mb-1"><?= e($booking['customer_name']) ?></h6>
                         <div class="small text-muted mb-2"><?= e($booking['customer_email']) ?></div>
-                        <?php if (!empty($booking['customer_phone'])): ?>
-                            <div class="small mb-1"><i class="fa-solid fa-phone me-2 text-muted"></i><?= e($booking['customer_phone']) ?></div>
-                        <?php endif; ?>
-                        <?php if (!empty($booking['customer_address'])): ?>
-                            <div class="small"><i class="fa-solid fa-location-dot me-2 text-muted"></i><?= e($booking['customer_address']) ?></div>
-                        <?php endif; ?>
                     </div>
                 </div>
             <?php endif; ?>

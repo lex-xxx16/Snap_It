@@ -18,6 +18,16 @@ require_once __DIR__ . '/functions.php';
     <script src="<?= e(site_url('includes/strip.js')) ?>"></script>
     <script src="<?= e(site_url('includes/camfx.js')) ?>"></script>
     <title>Snap It &mdash; Photo Booth Rental</title>
+    <?php if (is_loggedin()): ?>
+    <script>
+        // If the browser restores this page from its back/forward cache (for example after
+        // logging out and pressing Back), reload it so the server can check the login again.
+        window.addEventListener('pageshow', function (ev) {
+            var nav = (performance.getEntriesByType('navigation')[0] || {}).type;
+            if (ev.persisted || nav === 'back_forward') { window.location.reload(); }
+        });
+    </script>
+    <?php endif; ?>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-snapit">

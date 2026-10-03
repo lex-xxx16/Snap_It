@@ -8,35 +8,31 @@ if (is_loggedin()) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
+    $email = strtolower(trim($_POST['email'] ?? ''));
     $password = trim($_POST['password'] ?? '');
     $confirm_password = trim($_POST['confirm_password'] ?? '');
-    $phone = trim($_POST['phone'] ?? '');
-    $address = trim($_POST['address'] ?? '');
 
     $errors = [];
 
-    if (empty($name)) {
+    if ($name === '') {
         $errors[] = 'Full name is required.';
+    } elseif (strlen($name) > 150) {
+        $errors[] = 'Full name is too long (150 characters maximum).';
     }
-    if (empty($email)) {
+    if ($email === '') {
         $errors[] = 'Email is required.';
+    } elseif (strlen($email) > 150) {
+        $errors[] = 'Email is too long (150 characters maximum).';
     } elseif (!valid_email($email)) {
         $errors[] = 'Please enter a valid email address.';
     }
-    if (empty($password)) {
+    if ($password === '') {
         $errors[] = 'Password is required.';
     } elseif (strlen($password) < 6) {
         $errors[] = 'Password must be at least 6 characters.';
     }
     if ($password !== $confirm_password) {
         $errors[] = 'Passwords do not match.';
-    }
-    if (empty($phone)) {
-        $errors[] = 'Phone number is required.';
-    }
-    if (empty($address)) {
-        $errors[] = 'Address is required.';
     }
 
     if (!empty($errors)) {
@@ -47,8 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_stmt = mysqli_prepare($conn, "SELECT user_id FROM users WHERE email = ? LIMIT 1");
     mysqli_stmt_bind_param($check_stmt, 's', $email);
     mysqli_stmt_execute($check_stmt);
-    $check_result = mysqli_stmt_get_result($check_stmt);
-    if (mysqli_num_rows($check_result) > 0) {
+    if (mysqli_num_rows(mysqli_stmt_get_result($check_stmt)) > 0) {
         set_flash('Email is already registered. Please use a different email or login.', 'danger');
         redirect(site_url('users/register.php'));
     }
@@ -57,12 +52,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = 'customer';
     $status = 'active';
 
-    $insert_stmt = mysqli_prepare($conn, "INSERT INTO users (name, email, password, phone, address, role, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($insert_stmt, 'sssssss', $name, $email, $hashed_password, $phone, $address, $role, $status);
+    // Every new account is written to the users table as its own row (own user_id).
+    // The UNIQUE index on email is the final guard if two people register at the same moment.
+    $saved = false;
+    $duplicate = false;
+    try {
+        $insert_stmt = mysqli_prepare($conn, "INSERT INTO users (name, email, password, role, status) VALUES (?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param($insert_stmt, 'sssss', $name, $email, $hashed_password, $role, $status);
+        $saved = mysqli_stmt_execute($insert_stmt) && mysqli_stmt_affected_rows($insert_stmt) === 1;
+    } catch (mysqli_sql_exception $ex) {
+        $duplicate = ((int)$ex->getCode() === 1062);
+    }
 
-    if (mysqli_stmt_execute($insert_stmt)) {
+    if ($saved) {
         set_flash('Registration successful! Please sign in to continue.', 'success');
         redirect(site_url('users/login.php'));
+    }
+    if ($duplicate) {
+        set_flash('Email is already registered. Please use a different email or login.', 'danger');
+        redirect(site_url('users/register.php'));
     }
 
     set_flash('Registration failed. Please try again.', 'danger');
@@ -103,7 +111,7 @@ require __DIR__ . '/../includes/alert.php';
                             </div>
                         </div>
 
-                        <div class="row g-3 mb-3">
+                        <div class="row g-3 mb-4">
                             <div class="col-md-6">
                                 <label for="password" class="form-label fw-semibold">Password</label>
                                 <div class="input-group">
@@ -120,24 +128,6 @@ require __DIR__ . '/../includes/alert.php';
                                     <input type="password" class="form-control form-control-lg" id="confirm_password" name="confirm_password"
                                         required autocomplete="new-password">
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="phone" class="form-label fw-semibold">Phone Number</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                <input type="tel" class="form-control form-control-lg" id="phone" name="phone"
-                                    value="<?= e($_POST['phone'] ?? '') ?>" required autocomplete="tel">
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="address" class="form-label fw-semibold">Complete Address</label>
-                            <div class="input-group">
-                                <span class="input-group-text align-top"><i class="fa-solid fa-location-dot mt-2"></i></span>
-                                <textarea class="form-control form-control-lg" id="address" name="address"
-                                    rows="3" required autocomplete="street-address"><?= e($_POST['address'] ?? '') ?></textarea>
                             </div>
                         </div>
 
