@@ -10,7 +10,7 @@ include __DIR__ . '/../includes/header.php';
 ?>
 <div class="container py-5">
     <div class="text-center mb-4">
-        <h1 class="fw-bold" style="color:#6f42c1;"><i class="fa-solid fa-person-walking me-2"></i>Walk-in Photo</h1>
+        <h1 class="fw-bold">Walk-in Session</h1>
         <p class="text-muted mb-0">No event booking needed. Pick a strip package, enter the cash amount you will pay at the counter, and start taking photos right away.</p>
     </div>
 
@@ -23,9 +23,9 @@ include __DIR__ . '/../includes/header.php';
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="card h-100 border-0 shadow-sm text-center">
                     <div class="card-body d-flex flex-column">
-                        <i class="fa-solid fa-film fa-2x mb-2" style="color:#e83e8c;"></i>
+                        <i class="fa-solid fa-film fa-2x mb-2" style="color:var(--champagne);"></i>
                         <h5 class="fw-bold"><?= e(str_replace('Walk-in · ', '', $p['name'])) ?></h5>
-                        <div class="display-6 fw-bold my-2" style="color:#6f42c1;"><?= e(format_money($p['base_price'])) ?></div>
+                        <div class="display-6 fw-bold my-2" style="color:var(--snapit-gold);"><?= e(format_money($p['base_price'])) ?></div>
                         <p class="small text-muted flex-grow-1"><?= e($p['description']) ?></p>
                         <?php if (is_customer()): ?>
                             <form method="POST" action="<?= e(site_url('walkin/store.php')) ?>">

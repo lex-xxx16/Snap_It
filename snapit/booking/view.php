@@ -290,7 +290,7 @@ include __DIR__ . '/../includes/alert.php';
 
         <div class="col-lg-4">
             <div class="card shadow-sm border-0 mb-4 sticky-top" style="top:1rem;">
-                <div class="card-header py-3 text-white" style="background: linear-gradient(90deg, #6f42c1, #e83e8c);">
+                <div class="card-header py-3 text-white" style="background: linear-gradient(135deg,#3a2a1c,#1d140d);">
                     <h5 class="fw-bold mb-0"><i class="fa-solid fa-receipt me-2"></i>Payment Summary</h5>
                 </div>
                 <div class="card-body p-4">
@@ -306,7 +306,7 @@ include __DIR__ . '/../includes/alert.php';
                             </tr>
                             <tr class="border-top">
                                 <td class="fw-bold">Total Amount</td>
-                                <td class="text-end fw-bold" style="color:#6f42c1"><?= e(format_money($booking['total_amount'])) ?></td>
+                                <td class="text-end fw-bold" style="color:var(--snapit-gold)"><?= e(format_money($booking['total_amount'])) ?></td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Amount Paid</td>

@@ -60,9 +60,9 @@ require __DIR__ . '/../includes/alert.php';
             <div class="card shadow-sm border-0">
                 <div class="card-body p-5">
                     <div class="text-center mb-4">
-                        <i class="fa-solid fa-camera-retro fa-3x mb-3" style="color:#6f42c1"></i>
-                        <h2 class="fw-bold">Welcome Back</h2>
-                        <p class="text-muted">Sign in to your Snap It account</p>
+                        <span class="eyebrow mb-3">Member Access</span>
+                        <h2 class="fw-bold">Welcome back</h2>
+                        <p class="text-muted">Sign in to continue your Snap It experience</p>
                     </div>
 
                     <form action="<?= e(site_url('users/login.php')) ?>" method="POST" novalidate>
@@ -89,7 +89,7 @@ require __DIR__ . '/../includes/alert.php';
                                 <input type="checkbox" class="form-check-input" id="remember">
                                 <label class="form-check-label text-muted" for="remember">Remember me</label>
                             </div>
-                            <a href="<?= e(site_url('users/register.php')) ?>" class="text-decoration-none" style="color:#6f42c1">Forgot password?</a>
+                            <a href="<?= e(site_url('users/register.php')) ?>" class="text-decoration-none" style="color:var(--snapit-gold)">Forgot password?</a>
                         </div>
 
                         <button type="submit" class="btn btn-snapit btn-lg w-100 fw-semibold">
@@ -99,7 +99,7 @@ require __DIR__ . '/../includes/alert.php';
 
                     <div class="text-center mt-4 pt-3 border-top">
                         <p class="mb-0 text-muted">Don't have an account?
-                            <a href="<?= e(site_url('users/register.php')) ?>" class="fw-semibold text-decoration-none" style="color:#6f42c1">Create one</a>
+                            <a href="<?= e(site_url('users/register.php')) ?>" class="fw-semibold text-decoration-none" style="color:var(--snapit-gold)">Create one</a>
                         </p>
                     </div>
                 </div>

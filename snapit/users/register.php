@@ -87,9 +87,9 @@ require __DIR__ . '/../includes/alert.php';
             <div class="card shadow-sm border-0">
                 <div class="card-body p-5">
                     <div class="text-center mb-4">
-                        <i class="fa-solid fa-user-plus fa-3x mb-3" style="color:#6f42c1"></i>
-                        <h2 class="fw-bold">Create Your Account</h2>
-                        <p class="text-muted">Join Snap It and start booking your events</p>
+                        <span class="eyebrow mb-3">Join Snap It</span>
+                        <h2 class="fw-bold">Create your account</h2>
+                        <p class="text-muted">Begin reserving unforgettable event experiences</p>
                     </div>
 
                     <form action="<?= e(site_url('users/register.php')) ?>" method="POST" novalidate>
@@ -138,7 +138,7 @@ require __DIR__ . '/../includes/alert.php';
 
                     <div class="text-center mt-4 pt-3 border-top">
                         <p class="mb-0 text-muted">Already have an account?
-                            <a href="<?= e(site_url('users/login.php')) ?>" class="fw-semibold text-decoration-none" style="color:#6f42c1">Sign in here</a>
+                            <a href="<?= e(site_url('users/login.php')) ?>" class="fw-semibold text-decoration-none" style="color:var(--snapit-gold)">Sign in here</a>
                         </p>
                     </div>
                 </div>

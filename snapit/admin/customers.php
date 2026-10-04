@@ -53,7 +53,7 @@ include __DIR__ . '/../includes/alert.php';
 ?>
 
 <section class="container py-4">
-    <h1 class="fw-bold mb-4" style="color:#6f42c1">
+    <h1 class="fw-bold mb-4">
         <i class="fa-solid fa-users me-2"></i>Customer Management
     </h1>
 
@@ -64,7 +64,7 @@ include __DIR__ . '/../includes/alert.php';
                     <label class="form-label fw-semibold">Search Customers</label>
                     <div class="input-group">
                         <span class="input-group-text bg-white">
-                            <i class="fa-solid fa-magnifying-glass" style="color:#6f42c1"></i>
+                            <i class="fa-solid fa-magnifying-glass" style="color:var(--snapit-gold)"></i>
                         </span>
                         <input type="text" name="search" class="form-control"
                             placeholder="Search by name or email..."
@@ -88,7 +88,7 @@ include __DIR__ . '/../includes/alert.php';
     <div class="card border-0 shadow-sm">
         <div class="card-header bg-white py-3">
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="fw-bold mb-0" style="color:#6f42c1">
+                <h5 class="fw-bold mb-0">
                     <i class="fa-solid fa-user-group me-2"></i>
                     Customers
                     <?php if (!empty($search)): ?>
@@ -121,7 +121,7 @@ include __DIR__ . '/../includes/alert.php';
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
-                                                 style="width:42px;height:42px;background:linear-gradient(90deg,#6f42c1,#e83e8c);color:#fff;font-weight:700">
+                                                 style="width:42px;height:42px;background:linear-gradient(135deg,#3a2a1c,#1d140d);color:#fff;font-weight:700">
                                                 <?= e(strtoupper(substr($c['name'], 0, 1))) ?>
                                             </div>
                                             <div>

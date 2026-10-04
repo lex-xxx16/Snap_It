@@ -94,7 +94,7 @@ include __DIR__ . '/../includes/alert.php';
         <div class="card-header bg-white border-0 pt-4 pb-3 px-4">
             <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
                 <div>
-                    <h2 class="fw-bold mb-1" style="color:#6f42c1">
+                    <h2 class="fw-bold mb-1">
                         <i class="fa-solid fa-camera-retro me-2"></i><?= e($booking['event_name']) ?>
                     </h2>
                     <div class="text-muted small">
@@ -168,7 +168,7 @@ include __DIR__ . '/../includes/alert.php';
                 <div class="card border-0 shadow-sm overflow-hidden">
                     <div class="card-header bg-white border-0 d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 px-4">
                         <div>
-                            <h5 class="fw-bold mb-1" style="color:#6f42c1">
+                            <h5 class="fw-bold mb-1">
                                 <i class="fa-solid fa-images me-2"></i>Session #<?= $sid ?>
                                 <?php if (!empty($s['guest_name'])): ?>
                                     <span class="fw-normal text-muted fs-6 ms-2">&mdash; <?= e($s['guest_name']) ?></span>
@@ -192,7 +192,7 @@ include __DIR__ . '/../includes/alert.php';
                             <div class="row g-4">
                                 <div class="col-lg-5">
                                     <div class="d-flex align-items-center mb-2">
-                                        <i class="fa-solid fa-file-arrow-down me-2" style="color:#6f42c1"></i>
+                                        <i class="fa-solid fa-file-arrow-down me-2" style="color:var(--snapit-gold)"></i>
                                         <h6 class="fw-bold mb-0">Download PNG</h6>
                                     </div>
                                     <p class="text-muted small mb-3">Save this photo strip as a PNG image to your device.</p>
@@ -202,7 +202,7 @@ include __DIR__ . '/../includes/alert.php';
                                 </div>
                                 <div class="col-lg-7">
                                     <div class="d-flex align-items-center mb-2">
-                                        <i class="fa-regular fa-paper-plane me-2" style="color:#e83e8c"></i>
+                                        <i class="fa-regular fa-paper-plane me-2" style="color:var(--champagne)"></i>
                                         <h6 class="fw-bold mb-0">Email to Recipients</h6>
                                     </div>
                                     <p class="text-muted small mb-3">Enter up to 10 email addresses to deliver the photo set.</p>
@@ -245,7 +245,7 @@ include __DIR__ . '/../includes/alert.php';
                                             </div>
                                             <div class="d-flex flex-wrap gap-2">
                                                 <?php foreach ($recipients as $r): ?>
-                                                    <span class="badge rounded-pill bg-white text-dark border d-inline-flex align-items-center gap-1 py-2 px-3">
+                                                    <span class="badge rounded-pill bg-white border d-inline-flex align-items-center gap-1 py-2 px-3">
                                                         <i class="fa-regular fa-envelope text-muted small"></i>
                                                         <span class="small"><?= e($r['email']) ?></span>
                                                         <?php if (!empty($r['sent_at'])): ?>

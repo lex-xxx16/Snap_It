@@ -131,7 +131,7 @@ require __DIR__ . '/includes/alert.php';
     <div class="row justify-content-center">
         <div class="col-lg-9">
             <div class="card shadow-lg border-0">
-                <div class="card-header text-center py-4" style="background:linear-gradient(90deg,#6f42c1,#e83e8c);color:#fff;border-radius:var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0;">
+                <div class="card-header text-center py-4" style="background:linear-gradient(135deg,#3a2a1c,#1d140d);color:#fff;border-radius:var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0;">
                     <h2 class="mb-0"><i class="fa-solid fa-screwdriver-wrench me-2"></i>Account Repair Utility</h2>
                     <p class="mb-0 opacity-90 mt-1">Diagnose &amp; fix login issues with the default Snap It accounts</p>
                 </div>
@@ -149,7 +149,7 @@ require __DIR__ . '/includes/alert.php';
                         </div>
                     <?php else: ?>
 
-                        <h4 class="fw-bold mb-3"><i class="fa-solid fa-stethoscope me-1" style="color:#6f42c1"></i> Diagnostic Report</h4>
+                        <h4 class="fw-bold mb-3"><i class="fa-solid fa-stethoscope me-1" style="color:var(--snapit-gold)"></i> Diagnostic Report</h4>
                         <div class="table-responsive mb-4">
                             <table class="table align-middle">
                                 <thead>
@@ -187,7 +187,7 @@ require __DIR__ . '/includes/alert.php';
 
                         <form method="POST" action="<?= e($_SERVER['PHP_SELF']) ?>">
                             <input type="hidden" name="repair" value="1">
-                            <h4 class="fw-bold mb-3"><i class="fa-solid fa-hammer me-1" style="color:#fd7e14"></i> Apply Repair</h4>
+                            <h4 class="fw-bold mb-3"><i class="fa-solid fa-hammer me-1" style="color:var(--butter)"></i> Apply Repair</h4>
 
                             <div class="card bg-light border-0 mb-4">
                                 <div class="card-body">

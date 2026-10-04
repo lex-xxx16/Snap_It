@@ -2,7 +2,7 @@
 require_once __DIR__ . '/functions.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +13,15 @@ require_once __DIR__ . '/functions.php';
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="<?= e(site_url('includes/style/style.css')) ?>" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
     <script src="<?= e(site_url('includes/strip.js')) ?>"></script>
     <script src="<?= e(site_url('includes/camfx.js')) ?>"></script>
-    <title>Snap It &mdash; Photo Booth Rental</title>
+    <meta name="theme-color" content="#120d09">
+    <title>Snap It &mdash; Luxury Photo Booth Experiences</title>
     <?php if (is_loggedin()): ?>
     <script>
         // If the browser restores this page from its back/forward cache (for example after
@@ -35,20 +36,25 @@ require_once __DIR__ . '/functions.php';
 <body>
 <nav class="navbar navbar-expand-lg navbar-snapit">
     <div class="container-fluid container-lg">
-        <a class="navbar-brand fw-bold" href="<?= e(site_url()) ?>">
-            <i class="fa-solid fa-camera-retro me-2"></i>Snap It
+        <a class="navbar-brand" href="<?= e(site_url()) ?>" aria-label="Snap It — home">
+            <svg class="brand-mark" viewBox="0 0 26 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 16.5 9 3l5.5 9.5M11 16.5 17 6l7.5 10.5"/></svg>
+            <span>Snap It</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#snapitNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="snapitNavbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="<?= e(site_url()) ?>">Home</a></li>
+                <?php if (!is_loggedin()): ?>
+                    <li class="nav-item"><a class="nav-link" href="<?= e(site_url('index.php')) ?>#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= e(site_url('index.php')) ?>#packages">Packages</a></li>
+                <?php endif; ?>
                 <?php if (is_loggedin()): ?>
-                    <li class="nav-item"><a class="nav-link" href="<?= e(site_url('booking/index.php')) ?>">My Bookings</a></li>
-                    <?php if (is_customer()): ?><li class="nav-item"><a class="nav-link" href="<?= e(site_url('walkin/index.php')) ?>">Walk-in Photo</a></li><?php endif; ?>
+                    <li class="nav-item"><a class="nav-link" href="<?= e(site_url('booking/index.php')) ?>">Bookings</a></li>
+                    <?php if (is_customer()): ?><li class="nav-item"><a class="nav-link" href="<?= e(site_url('walkin/index.php')) ?>">Walk-in</a></li><?php endif; ?>
                     <li class="nav-item"><a class="nav-link" href="<?= e(site_url('gallery/index.php')) ?>">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= e(site_url('booth/index.php')) ?>">Photo Booth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= e(site_url('booth/index.php')) ?>">Studio</a></li>
                 <?php endif; ?>
                 <?php if (is_staff()): ?>
                     <li class="nav-item dropdown">
@@ -68,7 +74,7 @@ require_once __DIR__ . '/functions.php';
                     </li>
                 <?php endif; ?>
             </ul>
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
                 <?php if (is_loggedin()): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= e(site_url('users/profile.php')) ?>">
@@ -83,7 +89,7 @@ require_once __DIR__ . '/functions.php';
                     </li>
                 <?php else: ?>
                     <li class="nav-item"><a class="nav-link" href="<?= e(site_url('users/login.php')) ?>">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= e(site_url('users/register.php')) ?>">Register</a></li>
+                    <li class="nav-item ms-lg-1"><a class="nav-link nav-cta" href="<?= e(site_url('users/register.php')) ?>">Register</a></li>
                 <?php endif; ?>
             </ul>
         </div>

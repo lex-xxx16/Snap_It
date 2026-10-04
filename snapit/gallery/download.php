@@ -84,7 +84,7 @@ include __DIR__ . '/../includes/alert.php';
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-body d-flex flex-wrap align-items-center justify-content-between gap-3 p-4">
             <div>
-                <h2 class="fw-bold mb-1" style="color:#6f42c1">
+                <h2 class="fw-bold mb-1">
                     <i class="fa-solid fa-file-image me-2"></i>Session #<?= (int)$sid ?> &mdash; Download
                 </h2>
                 <div class="text-muted small">
@@ -121,7 +121,7 @@ include __DIR__ . '/../includes/alert.php';
 <div class="container mb-5 no-print">
     <div class="card border-0 shadow-sm">
         <div class="card-body p-4">
-            <h6 class="fw-bold mb-3"><i class="fa-solid fa-circle-info me-2" style="color:#6f42c1"></i>Layout Details</h6>
+            <h6 class="fw-bold mb-3"><i class="fa-solid fa-circle-info me-2" style="color:var(--snapit-gold)"></i>Layout Details</h6>
             <div class="row g-3 small">
                 <div class="col-md-3">
                     <div class="text-muted mb-1">Layout</div>

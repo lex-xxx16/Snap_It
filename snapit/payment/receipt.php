@@ -52,7 +52,7 @@ require __DIR__ . '/../includes/alert.php';
 
     <div class="receipt">
         <div class="text-center mb-3">
-            <div style="font-size: 1.5rem; font-weight: bold; color: #6f42c1;">
+            <div style="font-size: 1.5rem; font-weight: bold; color: #1a120c;">
                 <i class="fa-solid fa-camera-retro me-1"></i>Snap It
             </div>
             <div style="font-size: 0.8rem; color: #555;">Photo Booth & Rental System</div>

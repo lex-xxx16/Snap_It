@@ -56,14 +56,14 @@ include __DIR__ . '/../includes/alert.php';
                 </div>
             <?php endif; ?>
 
-            <div class="card shadow-sm border-0 p-5 mb-4 text-center" style="background:linear-gradient(135deg,#6f42c1,#e83e8c);color:#fff;border-radius:24px;">
+            <div class="card shadow-sm border-0 p-5 mb-4 text-center" style="background:linear-gradient(135deg,#4a3523,#1a120c);color:#fff;border-radius:24px;">
                 <i class="fa-solid fa-circle-check fa-4x mb-3" style="opacity:0.9;"></i>
-                <h2 class="fw-bold mb-1">All Done!</h2>
+                <h2 class="fw-bold mb-1">Beautifully done.</h2>
                 <p class="mb-0 opacity-95">Your photos are ready. Thank you for using Snap It Photo Booth.</p>
             </div>
 
             <div class="card shadow-sm border-0 p-4 mb-4">
-                <h5 class="fw-bold mb-3" style="color:var(--snapit-primary)">
+                <h5 class="fw-bold mb-3">
                     <i class="fa-regular fa-image me-2"></i>Your Photos
                     <span class="badge badge-snapit ms-2"><?= count($photo_rows) ?> photo(s)</span>
                 </h5>
@@ -79,7 +79,7 @@ include __DIR__ . '/../includes/alert.php';
 
             <?php if ($softcopy): ?>
             <div class="card shadow-sm border-0 p-4 mb-4">
-                <h5 class="fw-bold mb-3" style="color:var(--snapit-primary)">
+                <h5 class="fw-bold mb-3">
                     <i class="fa-solid fa-envelopes-bulk me-2"></i>Email Softcopies
                     <span class="badge bg-success ms-2"><i class="fa-solid fa-circle-check me-1"></i>Softcopy Add-On Active</span>
                 </h5>

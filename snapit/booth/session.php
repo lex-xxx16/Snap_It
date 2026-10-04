@@ -134,7 +134,7 @@ include __DIR__ . '/../includes/alert.php';
                  data-filter="<?= e($combined_css_filter) ?>">
 
                 <div id="countdownOverlay" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
-                     style="background:rgba(255,255,255,0.9);border-radius:24px;z-index:20;display:none !important;">
+                     style="background:rgba(18,13,9,0.88);border-radius:24px;z-index:20;display:none !important;">
                     <div id="countdownText" class="countdown-big">3</div>
                 </div>
 
@@ -150,8 +150,8 @@ include __DIR__ . '/../includes/alert.php';
                     <canvas id="captureCanvas" style="display:none;"></canvas>
 
                     <div id="cameraError" class="text-center text-muted" style="display:none;">
-                        <i class="fa-solid fa-video-slash fa-4x mb-3" style="color:#dc3545;opacity:0.6;"></i>
-                        <h4 class="fw-bold mb-2 text-dark">Camera Couldn't Start</h4>
+                        <i class="fa-solid fa-video-slash fa-4x mb-3" style="color:#d98c8c;opacity:0.6;"></i>
+                        <h4 class="fw-bold mb-2">Camera Couldn't Start</h4>
                         <p id="cameraErrorText" class="mb-3 text-muted mx-auto" style="max-width:480px;">
                             We couldn't access your camera. Please allow camera access when prompted, or use a device with a working webcam.
                         </p>

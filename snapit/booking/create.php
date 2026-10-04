@@ -37,7 +37,7 @@ include __DIR__ . '/../includes/alert.php';
         <div class="col-lg-10">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="fw-bold mb-0">
-                    <i class="fa-regular fa-calendar-plus me-2"></i>Create Booking
+                    Reserve Your Event
                 </h2>
                 <a href="<?= e(site_url('booking/index.php')) ?>" class="btn btn-outline-secondary">
                     <i class="fa-solid fa-arrow-left me-1"></i> Back
@@ -207,7 +207,7 @@ include __DIR__ . '/../includes/alert.php';
                                 </tr>
                                 <tr class="border-top">
                                     <td class="fw-bold fs-5">Total Amount</td>
-                                    <td class="text-end fw-bold fs-5" style="color:#6f42c1" id="summary_total">PHP 0.00</td>
+                                    <td class="text-end fw-bold fs-5" style="color:var(--snapit-gold)" id="summary_total">PHP 0.00</td>
                                 </tr>
                             </tbody>
                         </table>

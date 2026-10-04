@@ -106,14 +106,14 @@ include __DIR__ . '/../includes/alert.php';
 ?>
 
 <section class="container py-4">
-    <h1 class="fw-bold mb-4" style="color:#6f42c1">
+    <h1 class="fw-bold mb-4">
         <i class="fa-solid fa-user-tie me-2"></i>Staff Management
     </h1>
 
     <div class="row g-4 mb-4">
         <div class="col-lg-5">
             <div class="card border-0 shadow-sm h-100">
-                <div class="card-header py-3" style="background:linear-gradient(90deg,#6f42c1,#e83e8c);color:#fff;border-radius:16px 16px 0 0">
+                <div class="card-header py-3" style="background:linear-gradient(135deg,#3a2a1c,#1d140d);color:#fff;border-radius:16px 16px 0 0">
                     <h5 class="fw-bold mb-0">
                         <i class="fa-solid fa-user-plus me-2"></i>Create New Staff Account
                     </h5>
@@ -125,7 +125,7 @@ include __DIR__ . '/../includes/alert.php';
                             <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text bg-white">
-                                    <i class="fa-solid fa-id-card" style="color:#6f42c1"></i>
+                                    <i class="fa-solid fa-id-card" style="color:var(--snapit-gold)"></i>
                                 </span>
                                 <input type="text" name="name" class="form-control"
                                     value="<?= e($_POST['name'] ?? '') ?>" required
@@ -136,7 +136,7 @@ include __DIR__ . '/../includes/alert.php';
                             <label class="form-label fw-semibold">Email Address <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text bg-white">
-                                    <i class="fa-solid fa-envelope" style="color:#6f42c1"></i>
+                                    <i class="fa-solid fa-envelope" style="color:var(--snapit-gold)"></i>
                                 </span>
                                 <input type="email" name="email" class="form-control"
                                     value="<?= e($_POST['email'] ?? '') ?>" required
@@ -147,7 +147,7 @@ include __DIR__ . '/../includes/alert.php';
                             <label class="form-label fw-semibold">Password <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text bg-white">
-                                    <i class="fa-solid fa-lock" style="color:#6f42c1"></i>
+                                    <i class="fa-solid fa-lock" style="color:var(--snapit-gold)"></i>
                                 </span>
                                 <input type="password" name="password" class="form-control"
                                     required minlength="6"
@@ -177,7 +177,7 @@ include __DIR__ . '/../includes/alert.php';
         <div class="col-lg-7">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                    <h5 class="fw-bold mb-0" style="color:#6f42c1">
+                    <h5 class="fw-bold mb-0">
                         <i class="fa-solid fa-people-group me-2"></i>Staff &amp; Administrators
                     </h5>
                     <span class="badge badge-snapit px-3 py-2">
@@ -205,7 +205,7 @@ include __DIR__ . '/../includes/alert.php';
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
-                                                         style="width:42px;height:42px;background:linear-gradient(90deg,<?= $s['role'] === 'admin' ? '#e83e8c,#fd7e14' : '#6f42c1,#0dcaf0' ?>);color:#fff;font-weight:700">
+                                                         style="width:42px;height:42px;background:linear-gradient(90deg,<?= $s['role'] === 'admin' ? '#8c6b45,#d8c09a' : '#3a2a1c,#8c6b45' ?>);color:#fff;font-weight:700">
                                                         <?= e(strtoupper(substr($s['name'], 0, 1))) ?>
                                                     </div>
                                                     <div>

@@ -77,7 +77,7 @@ include __DIR__ . '/../includes/alert.php';
 ?>
 
 <section class="container py-4">
-    <h1 class="fw-bold mb-4" style="color:#6f42c1">
+    <h1 class="fw-bold mb-4">
         <i class="fa-solid fa-gauge me-2"></i>Admin Dashboard
     </h1>
 
@@ -89,8 +89,8 @@ include __DIR__ . '/../includes/alert.php';
                         <div class="kpi-label mb-1">Pending Bookings</div>
                         <div class="kpi-value"><?= e($pending_count) ?></div>
                     </div>
-                    <div class="rounded-circle p-3" style="background:#fff3cd">
-                        <i class="fa-regular fa-clock fa-2xl" style="color:#fd7e14"></i>
+                    <div class="rounded-circle p-3" style="background:rgba(216,192,154,.10)">
+                        <i class="fa-regular fa-clock fa-2xl" style="color:var(--butter)"></i>
                     </div>
                 </div>
             </div>
@@ -102,7 +102,7 @@ include __DIR__ . '/../includes/alert.php';
                         <div class="kpi-label mb-1">Confirmed</div>
                         <div class="kpi-value"><?= e($confirmed_count) ?></div>
                     </div>
-                    <div class="rounded-circle p-3" style="background:#cff4fc">
+                    <div class="rounded-circle p-3" style="background:rgba(216,192,154,.10)">
                         <i class="fa-regular fa-calendar-check fa-2xl" style="color:#0dcaf0"></i>
                     </div>
                 </div>
@@ -115,7 +115,7 @@ include __DIR__ . '/../includes/alert.php';
                         <div class="kpi-label mb-1">Paid / Completed</div>
                         <div class="kpi-value"><?= e($paid_count) ?></div>
                     </div>
-                    <div class="rounded-circle p-3" style="background:#d1e7dd">
+                    <div class="rounded-circle p-3" style="background:rgba(216,192,154,.10)">
                         <i class="fa-solid fa-circle-check fa-2xl" style="color:#198754"></i>
                     </div>
                 </div>
@@ -128,8 +128,8 @@ include __DIR__ . '/../includes/alert.php';
                         <div class="kpi-label mb-1">Total Bookings</div>
                         <div class="kpi-value"><?= e($total_bookings) ?></div>
                     </div>
-                    <div class="rounded-circle p-3" style="background:#f8f5ff">
-                        <i class="fa-solid fa-calendar-days fa-2xl" style="color:#6f42c1"></i>
+                    <div class="rounded-circle p-3" style="background:rgba(216,192,154,.10)">
+                        <i class="fa-solid fa-calendar-days fa-2xl" style="color:var(--snapit-gold)"></i>
                     </div>
                 </div>
             </div>
@@ -141,7 +141,7 @@ include __DIR__ . '/../includes/alert.php';
                         <div class="kpi-label mb-1">Total Revenue</div>
                         <div class="kpi-value" style="font-size:1.8rem"><?= e(format_money($total_revenue)) ?></div>
                     </div>
-                    <div class="rounded-circle p-3" style="background:#d1e7dd">
+                    <div class="rounded-circle p-3" style="background:rgba(216,192,154,.10)">
                         <i class="fa-solid fa-money-bill-wave fa-2xl" style="color:#198754"></i>
                     </div>
                 </div>
@@ -154,7 +154,7 @@ include __DIR__ . '/../includes/alert.php';
                         <div class="kpi-label mb-1">Active Sessions Today</div>
                         <div class="kpi-value"><?= e($active_sessions) ?></div>
                     </div>
-                    <div class="rounded-circle p-3" style="background:#cff4fc">
+                    <div class="rounded-circle p-3" style="background:rgba(216,192,154,.10)">
                         <i class="fa-solid fa-camera fa-2xl" style="color:#0dcaf0"></i>
                     </div>
                 </div>
@@ -165,10 +165,10 @@ include __DIR__ . '/../includes/alert.php';
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <div class="kpi-label mb-1">Low-Stock Items</div>
-                        <div class="kpi-value" style="color:<?= $low_stock_count > 0 ? '#dc3545' : '#6f42c1' ?>"><?= e($low_stock_count) ?></div>
+                        <div class="kpi-value" style="color:<?= $low_stock_count > 0 ? '#d98c8c' : 'var(--cream)' ?>"><?= e($low_stock_count) ?></div>
                     </div>
-                    <div class="rounded-circle p-3" style="background:#f8d7da">
-                        <i class="fa-solid fa-triangle-exclamation fa-2xl" style="color:#dc3545"></i>
+                    <div class="rounded-circle p-3" style="background:rgba(216,192,154,.10)">
+                        <i class="fa-solid fa-triangle-exclamation fa-2xl" style="color:#d98c8c"></i>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@ include __DIR__ . '/../includes/alert.php';
         <div class="col-lg-7">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                    <h5 class="fw-bold mb-0" style="color:#6f42c1">
+                    <h5 class="fw-bold mb-0">
                         <i class="fa-solid fa-clock-rotate-left me-2"></i>Recent Bookings
                     </h5>
                     <a href="<?= e(site_url('booking/index.php')) ?>" class="btn btn-sm btn-snapit">
@@ -234,7 +234,7 @@ include __DIR__ . '/../includes/alert.php';
         <div class="col-lg-5">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                    <h5 class="fw-bold mb-0" style="color:#6f42c1">
+                    <h5 class="fw-bold mb-0">
                         <i class="fa-solid fa-boxes-stacked me-2"></i>Low-Stock Inventory Alert
                     </h5>
                     <a href="<?= e(site_url('inventory/index.php')) ?>" class="btn btn-sm btn-snapit">

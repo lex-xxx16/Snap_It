@@ -73,7 +73,7 @@ include __DIR__ . '/includes/alert.php';
             <div class="card shadow-lg">
                 <div class="card-header text-center py-4">
                     <h2 class="mb-0">
-                        <i class="fa-solid fa-camera-retro me-2" style="color:#6f42c1"></i>
+                        <i class="fa-solid fa-camera-retro me-2" style="color:var(--snapit-gold)"></i>
                         Snap It &mdash; Installer
                     </h2>
                     <p class="text-muted mb-0 mt-2">Photo Customization Booth and Rental System</p>
@@ -120,7 +120,7 @@ include __DIR__ . '/includes/alert.php';
                     <hr class="my-4">
                     <div class="card bg-light border-0">
                         <div class="card-body">
-                            <h6 class="fw-bold"><i class="fa-solid fa-info-circle me-1" style="color:#6f42c1"></i> Default accounts after install:</h6>
+                            <h6 class="fw-bold"><i class="fa-solid fa-info-circle me-1" style="color:var(--snapit-gold)"></i> Default accounts after install:</h6>
                             <ul class="mb-0 small">
                                 <li><strong>Admin:</strong> admin@snapit.ph / <code>admin123</code></li>
                                 <li><strong>Staff:</strong> staff@snapit.ph / <code>staff123</code></li>

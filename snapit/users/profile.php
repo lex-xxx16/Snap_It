@@ -69,7 +69,7 @@ require __DIR__ . '/../includes/alert.php';
                 <div class="card-body text-center p-4">
                     <div class="mb-3">
                         <div class="avatar-circle mx-auto mb-3 d-flex align-items-center justify-content-center text-white fw-bold"
-                            style="width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#6f42c1,#e83e8c);font-size:2.2rem">
+                            style="width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#4a3523,#1a120c);font-size:2.2rem">
                             <?= e(strtoupper(substr($user['name'], 0, 1))) ?>
                         </div>
                         <h4 class="fw-bold mb-1"><?= e($user['name']) ?></h4>
@@ -88,7 +88,7 @@ require __DIR__ . '/../includes/alert.php';
         <div class="col-lg-8">
             <div class="card shadow-sm border-0 mb-4">
                 <div class="card-header bg-transparent py-3 px-4 border-bottom">
-                    <h5 class="fw-bold mb-0"><i class="fa-regular fa-pen-to-square me-2" style="color:#6f42c1"></i>Edit Profile</h5>
+                    <h5 class="fw-bold mb-0"><i class="fa-regular fa-pen-to-square me-2" style="color:var(--snapit-gold)"></i>Edit Profile</h5>
                 </div>
                 <div class="card-body p-4">
                     <form action="<?= e(site_url('users/profile.php')) ?>" method="POST" novalidate>
@@ -119,7 +119,7 @@ require __DIR__ . '/../includes/alert.php';
 
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-transparent py-3 px-4 border-bottom d-flex align-items-center justify-content-between">
-                    <h5 class="fw-bold mb-0"><i class="fa-regular fa-calendar-check me-2" style="color:#e83e8c"></i>Recent Bookings</h5>
+                    <h5 class="fw-bold mb-0"><i class="fa-regular fa-calendar-check me-2" style="color:var(--champagne)"></i>Recent Bookings</h5>
                     <?php if (is_customer()): ?>
                         <a href="<?= e(site_url('booking/create.php')) ?>" class="btn btn-sm btn-accent fw-semibold">
                             <i class="fa-solid fa-plus me-1"></i>New Booking
@@ -159,7 +159,7 @@ require __DIR__ . '/../includes/alert.php';
                                                 </div>
                                             </td>
                                             <td>
-                                                <span class="fw-bold" style="color:#6f42c1"><?= e(format_money($booking['total_amount'])) ?></span>
+                                                <span class="fw-bold" style="color:var(--snapit-gold)"><?= e(format_money($booking['total_amount'])) ?></span>
                                             </td>
                                             <td class="px-4">
                                                 <span class="badge rounded-pill <?= e(status_badge_class($booking['status'])) ?> px-3 py-2">

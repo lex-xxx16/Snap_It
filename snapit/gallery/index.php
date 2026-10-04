@@ -55,8 +55,8 @@ include __DIR__ . '/../includes/alert.php';
 <div class="container my-5">
     <div class="d-flex align-items-center justify-content-between mb-4">
         <div>
-            <h2 class="fw-bold mb-1" style="color:#6f42c1">
-                <i class="fa-regular fa-images me-2"></i>Photo Gallery
+            <h2 class="fw-bold mb-1">
+                Photo Gallery
             </h2>
             <p class="text-muted mb-0">
                 <?= $is_staff_view ? 'Browse all event photo sessions.' : 'Browse photos from your booked events.' ?>
@@ -102,7 +102,7 @@ include __DIR__ . '/../includes/alert.php';
                                                 <?php if (isset($thumbs[$i])): ?>
                                                     <img src="<?= e($thumbs[$i]) ?>" class="w-100 h-100" style="object-fit:cover;" alt="Photo">
                                                 <?php else: ?>
-                                                    <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background:#f3eaff;">
+                                                    <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background:#2b1f15;">
                                                         <i class="fa-solid fa-image text-muted opacity-50 fa-lg"></i>
                                                     </div>
                                                 <?php endif; ?>
@@ -110,7 +110,7 @@ include __DIR__ . '/../includes/alert.php';
                                         <?php endfor; ?>
                                     </div>
                                 <?php else: ?>
-                                    <div class="d-flex align-items-center justify-content-center" style="height:200px;background:linear-gradient(135deg,#f3eaff,#fdf2f8);">
+                                    <div class="d-flex align-items-center justify-content-center" style="height:200px;background:linear-gradient(135deg,#2b1f15,#1a120c);">
                                         <div class="text-center">
                                             <i class="fa-regular fa-image fa-3x text-muted opacity-50 mb-2"></i>
                                             <div class="small text-muted">No photos yet</div>
@@ -124,7 +124,7 @@ include __DIR__ . '/../includes/alert.php';
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h5 class="fw-bold mb-2 text-dark"><?= e($b['event_name']) ?></h5>
+                                <h5 class="fw-bold mb-2"><?= e($b['event_name']) ?></h5>
                                 <div class="d-flex align-items-center text-muted small mb-2">
                                     <i class="fa-regular fa-calendar me-2"></i>
                                     <?= e(format_date($b['event_date'])) ?>

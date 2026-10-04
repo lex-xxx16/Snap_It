@@ -34,8 +34,8 @@ include __DIR__ . '/../includes/alert.php';
         <div class="col-lg-7">
             <div class="card shadow-sm border-0 p-4">
                 <div class="text-center mb-4">
-                    <i class="fa-solid fa-camera-retro fa-3x mb-2" style="color:var(--snapit-primary)"></i>
-                    <h2 class="fw-bold" style="color:var(--snapit-primary)">Photo Booth</h2>
+                    <span class="eyebrow mb-3">The Studio</span>
+                    <h2 class="fw-bold">Photo Booth</h2>
                     <p class="text-muted mb-0">Attach to a confirmed booking to start capturing moments.</p>
                 </div>
 

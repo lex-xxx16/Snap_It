@@ -25,7 +25,7 @@ include __DIR__ . '/../includes/alert.php';
 
 <div class="container py-4">
     <div class="text-center mb-3">
-        <h2 class="fw-bold" style="color:var(--snapit-primary)">
+        <h2 class="fw-bold">
             <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Customize Your Booth
         </h2>
         <p class="text-muted mb-0">Choose your preset, filter, layout, and frame design.</p>
@@ -83,7 +83,7 @@ include __DIR__ . '/../includes/alert.php';
                                        data-css="<?= e($f['css_filter']) ?>"
                                        <?= $first_filter && $f['filter_id'] == $first_filter['filter_id'] ? 'checked' : '' ?>>
                                 <div class="filter-card">
-                                    <div class="filter-preview" style="background:<?= e($f['preview_color'] ?? 'linear-gradient(135deg, #a78bfa, #f472b6)') ?>;filter:<?= e($f['css_filter']) ?>"></div>
+                                    <div class="filter-preview" style="background:<?= e($f['preview_color'] ?? 'linear-gradient(135deg, #8c6b45, #d8c09a)') ?>;filter:<?= e($f['css_filter']) ?>"></div>
                                     <div class="fw-bold"><?= e($f['name']) ?></div>
                                 </div>
                             </label>
@@ -109,7 +109,7 @@ include __DIR__ . '/../includes/alert.php';
                                     <div class="mb-2">
                                         <?php
                                         $ps = explode('x', $L['print_size'] ?: '3x2'); $mw = ((int)$ps[0] <= 2) ? 44 : 64;
-$items = str_repeat('<div style="background:#6f42c1;border-radius:3px;"></div>', (int)$L['photo_count']);
+$items = str_repeat('<div style="background:#d8c09a;border-radius:3px;"></div>', (int)$L['photo_count']);
 echo '<div style="display:grid;gap:3px;margin:0 auto;padding:4px;border:1px solid #ddd;max-width:' . $mw . 'px;aspect-ratio:' . (int)$ps[0] . '/' . (int)$ps[1] . ';grid-template-columns:repeat(' . (int)$L['grid_cols'] . ',1fr);grid-template-rows:repeat(' . (int)$L['grid_rows'] . ',1fr);">' . $items . '</div>';
                                         ?>
                                     </div>
