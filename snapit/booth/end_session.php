@@ -15,7 +15,7 @@ mysqli_stmt_execute($stmt);
 $sess = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 $booking_id = (int)$sess['booking_id'];
 
-$stmt = mysqli_prepare($conn, "SELECT package_id, estimated_hardcopies FROM bookings WHERE booking_id = ? LIMIT 1");
+$stmt = mysqli_prepare($conn, "SELECT package_id, estimated_hardcopies, booking_type FROM bookings WHERE booking_id = ? LIMIT 1");
 mysqli_stmt_bind_param($stmt, 'i', $booking_id);
 mysqli_stmt_execute($stmt);
 $bk = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
@@ -27,13 +27,16 @@ try {
     mysqli_stmt_bind_param($stmt, 'i', $session_id);
     mysqli_stmt_execute($stmt);
 
-    $photos = mysqli_query($conn, "SELECT photo_id FROM session_photos WHERE session_id = " . (int)$session_id . " AND is_kept = 1");
+    // Walk-ins print one strip x the number of strips they paid for; events print each photo once.
+    $is_walkin = $bk && $bk['booking_type'] === 'walkin';
+    $copies = $is_walkin ? max(1, (int)$bk['estimated_hardcopies']) : 1;
+    $photos = mysqli_query($conn, "SELECT photo_id FROM session_photos WHERE session_id = " . (int)$session_id . " AND is_kept = 1" . ($is_walkin ? " ORDER BY order_index LIMIT 1" : ""));
     $print_count = 0;
     if ($has_hardcopy) {
         while ($ph = mysqli_fetch_assoc($photos)) {
-            $stmt = mysqli_prepare($conn, "INSERT INTO print_jobs (session_id, booking_id, photo_id, copies, status, paper_used, ink_used_ml) VALUES (?, ?, ?, 1, 'pending', 0, 0)");
+            $stmt = mysqli_prepare($conn, "INSERT INTO print_jobs (session_id, booking_id, photo_id, copies, status, paper_used, ink_used_ml) VALUES (?, ?, ?, ?, 'pending', 0, 0)");
             $pid = (int)$ph['photo_id'];
-            mysqli_stmt_bind_param($stmt, 'iii', $session_id, $booking_id, $pid);
+            mysqli_stmt_bind_param($stmt, 'iiii', $session_id, $booking_id, $pid, $copies);
             mysqli_stmt_execute($stmt);
             $print_count++;
         }

@@ -66,7 +66,7 @@ if (!empty($errors)) {
     redirect(site_url('booking/create.php'));
 }
 
-$pkg_stmt = mysqli_prepare($conn, "SELECT * FROM packages WHERE package_id = ? AND is_active = 1 LIMIT 1");
+$pkg_stmt = mysqli_prepare($conn, "SELECT * FROM packages WHERE package_id = ? AND is_active = 1 AND package_type = 'event' LIMIT 1");
 mysqli_stmt_bind_param($pkg_stmt, 'i', $package_id);
 mysqli_stmt_execute($pkg_stmt);
 $pkg_result = mysqli_stmt_get_result($pkg_stmt);

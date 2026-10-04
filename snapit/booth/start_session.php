@@ -24,7 +24,7 @@ if (is_customer()) {
     $types .= 'i';
 }
 
-$stmt = mysqli_prepare($conn, "SELECT booking_id FROM bookings $where LIMIT 1");
+$stmt = mysqli_prepare($conn, "SELECT booking_id, booking_type FROM bookings $where LIMIT 1");
 mysqli_stmt_bind_param($stmt, $types, ...$params);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
@@ -32,6 +32,15 @@ $result = mysqli_stmt_get_result($stmt);
 if (mysqli_num_rows($result) === 0) {
     set_flash('Booking not found or not eligible for booth sessions.', 'danger');
     redirect(site_url('booth/index.php'));
+}
+
+$bk_row = mysqli_fetch_assoc($result);
+if ($bk_row['booking_type'] === 'walkin') {
+    $chk = mysqli_query($conn, "SELECT 1 FROM guest_sessions WHERE booking_id = " . (int)$booking_id . " LIMIT 1");
+    if (mysqli_num_rows($chk) > 0) {
+        set_flash('This walk-in package already has its photo session. Choose a new walk-in package to take more photos.', 'warning');
+        redirect(site_url('walkin/index.php'));
+    }
 }
 
 $stmt = mysqli_prepare($conn, "INSERT INTO guest_sessions (booking_id, guest_name, status, idle_timeout_at, started_at)

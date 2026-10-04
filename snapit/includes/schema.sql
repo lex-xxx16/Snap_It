@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS packages (
     base_price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     has_softcopy_addon TINYINT(1) NOT NULL DEFAULT 1,
     softcopy_addon_price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    package_type ENUM('event','walkin') NOT NULL DEFAULT 'event',
     is_active TINYINT(1) NOT NULL DEFAULT 1,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -27,6 +28,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     booking_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     package_id INT NOT NULL,
+    booking_type ENUM('event','walkin') NOT NULL DEFAULT 'event',
     event_name VARCHAR(200) NOT NULL,
     event_date DATE NOT NULL,
     start_time TIME NOT NULL,

@@ -70,3 +70,9 @@ INSERT INTO frame_designs (name, border_color, border_width, bg_color, text_colo
 ('Holiday Noir', '#c0392b', 3, '#14201a', '#f1e4c3', 8, 4, 'dots', 1),
 ('Ocean Breeze', '#4bb3d9', 4, '#e3f4fb', '#0b5d7a', 8, 12, NULL, 1),
 ('Film Reel', '#0d0d0d', 2, '#0d0d0d', '#e8d9a8', 12, 0, NULL, 1);
+
+INSERT INTO packages (name, description, duration_hours, softcopy_count, hardcopy_count, base_price, has_softcopy_addon, softcopy_addon_price, package_type, is_active) VALUES
+('Walk-in · Single Strip', '1 printed photo strip, plus a digital copy sent to your email.', 1, 1, 1, 120.00, 0, 0.00, 'walkin', 1),
+('Walk-in · Duo Pack', '2 printed photo strips, plus a digital copy sent to your email.', 1, 1, 2, 200.00, 0, 0.00, 'walkin', 1),
+('Walk-in · Friends Pack', '4 printed photo strips, plus a digital copy sent to your email.', 1, 1, 4, 350.00, 0, 0.00, 'walkin', 1),
+('Walk-in · Squad Pack', '6 printed photo strips, plus a digital copy sent to your email.', 1, 1, 6, 480.00, 0, 0.00, 'walkin', 1);

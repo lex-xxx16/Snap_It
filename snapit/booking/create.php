@@ -5,7 +5,7 @@ require_login();
 
 $preselected_package = isset($_GET['package']) ? (int)$_GET['package'] : 0;
 
-$pkg_stmt = mysqli_prepare($conn, "SELECT * FROM packages WHERE is_active = 1 ORDER BY base_price ASC");
+$pkg_stmt = mysqli_prepare($conn, "SELECT * FROM packages WHERE is_active = 1 AND package_type = 'event' ORDER BY base_price ASC");
 mysqli_stmt_execute($pkg_stmt);
 $pkg_result = mysqli_stmt_get_result($pkg_stmt);
 

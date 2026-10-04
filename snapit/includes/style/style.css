@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-body);
     background: linear-gradient(135deg, #f8f5ff 0%, #fdf2f8 100%);
     min-height: 100vh;
 }
@@ -36,7 +36,7 @@ body {
 
 .hero h1 {
     font-size: 3.5rem;
-    font-weight: 800;
+    font-weight: 600;
     text-shadow: 0 2px 15px rgba(0,0,0,0.2);
 }
 
@@ -63,7 +63,7 @@ body {
     background: linear-gradient(90deg, var(--snapit-primary), var(--snapit-secondary));
     color: #fff;
     border: none;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .btn-snapit {
@@ -117,7 +117,7 @@ body {
 
 .kpi-card .kpi-value {
     font-size: 2.5rem;
-    font-weight: 800;
+    font-weight: 600;
     background: linear-gradient(90deg, var(--snapit-primary), var(--snapit-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -141,13 +141,13 @@ body {
 .table thead th {
     background: var(--snapit-light);
     color: var(--snapit-primary);
-    font-weight: 700;
+    font-weight: 600;
     border-bottom: 2px solid var(--snapit-primary);
 }
 
 .countdown-big {
     font-size: 8rem;
-    font-weight: 900;
+    font-weight: 600;
     color: var(--snapit-primary);
     text-shadow: 0 4px 20px rgba(111, 66, 193, 0.3);
 }
@@ -247,7 +247,7 @@ footer {
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     background: #dee2e6; color: #495057;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .step-indicator .step.active {
@@ -291,4 +291,55 @@ footer {
 .snap-grid{display:grid;gap:var(--gap);flex:1;min-height:0}
 .snap-grid img,.snap-slot{width:100%;height:100%;min-height:90px;object-fit:cover;border-radius:var(--rad);display:block}
 .snap-slot{background:rgba(128,128,128,.12);display:flex;align-items:center;justify-content:center;color:#bbb}
-.snap-foot{text-align:center;color:var(--fg);font:600 .72rem/1.2 sans-serif;letter-spacing:.04em;padding-top:calc(var(--gap)*1.2);min-height:1.2em}
+.snap-foot{text-align:center;color:var(--fg);font:500 .78rem/1.2 var(--font-body);letter-spacing:.04em;padding-top:calc(var(--gap)*1.2);min-height:1.2em}
+
+/* ===== Luxury typography: Playfair Display (titles) + Jost (text) ===== */
+:root {
+    --font-display: 'Playfair Display', 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+    --font-body: 'Jost', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --snapit-gold: #c9a96e;
+    --bs-body-font-family: var(--font-body);
+    --bs-body-font-size: 1.02rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.75;
+}
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+/* high-contrast serif for titles, prices and the brand; lining numerals keep prices readable */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6,
+.card-title, .modal-title, .accordion-button {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+    font-variant-numeric: lining-nums;
+    font-feature-settings: "lnum" 1;
+}
+.navbar-brand { font-family: var(--font-display); font-weight: 500; font-style: italic; letter-spacing: 0.04em; font-size: 1.6rem; }
+/* forms, buttons and menus follow the body font */
+input, select, textarea, button, .form-control, .form-select, .form-label, .form-text, .form-check-label,
+.input-group-text, .btn, .badge, .dropdown-item, .nav-link, .table, .alert, .page-link, .list-group-item {
+    font-family: var(--font-body);
+}
+.form-control, .form-select, textarea { font-weight: 400; font-size: 1rem; letter-spacing: 0.02em; }
+.form-control::placeholder, textarea::placeholder { font-weight: 300; opacity: 0.5; }
+.form-label { font-weight: 500; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.12em; }
+.btn { font-weight: 500; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; }
+.btn-lg { font-size: 0.92rem; }
+.badge { font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.7em; }
+.table th { font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; }
+.navbar .nav-link { font-weight: 400; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.8rem; }
+/* tone down heavy bold everywhere */
+.fw-bold, .fw-bolder, .fw-semibold { font-weight: 500 !important; }
+strong, b { font-weight: 500; }
+.text-muted, .small, small { font-weight: 300; }
+/* first impression: refined hero */
+.hero h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(2.6rem, 6vw, 4.4rem); letter-spacing: 0.05em; }
+.hero h1::after { content: ''; display: block; width: 90px; height: 1px; margin: 1rem auto 0; background: var(--snapit-gold); }
+.hero .lead { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 1.35rem; letter-spacing: 0.03em; }

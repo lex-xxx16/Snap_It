@@ -140,7 +140,7 @@ function booking_has_conflict($conn, $event_date, $start_time, $duration_hours, 
     $end_min = $start_min + ((int)$duration_hours * 60);
 
     $sql = "SELECT booking_id, start_time, duration_hours FROM bookings 
-            WHERE event_date = ? AND status NOT IN ('cancelled')";
+            WHERE event_date = ? AND booking_type = 'event' AND status NOT IN ('cancelled')";
     $params = [$event_date];
     $types = 's';
     if ($exclude_booking_id) {

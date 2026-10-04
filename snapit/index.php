@@ -2,7 +2,7 @@
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/config.php';
 
-$packages_stmt = mysqli_prepare($conn, "SELECT * FROM packages WHERE is_active = 1 ORDER BY base_price ASC");
+$packages_stmt = mysqli_prepare($conn, "SELECT * FROM packages WHERE is_active = 1 AND package_type = 'event' ORDER BY base_price ASC");
 mysqli_stmt_execute($packages_stmt);
 $packages = mysqli_stmt_get_result($packages_stmt);
 
@@ -25,8 +25,11 @@ include __DIR__ . '/includes/alert.php';
             </div>
         <?php else: ?>
             <div class="mt-4">
-                <a href="<?= e(site_url('booking/create.php')) ?>" class="btn btn-light btn-lg fw-semibold px-5">
+                <a href="<?= e(site_url('booking/create.php')) ?>" class="btn btn-light btn-lg fw-semibold px-5 me-2">
                     <i class="fa-regular fa-calendar-plus me-2"></i>Book an Event
+                </a>
+                <a href="<?= e(site_url('walkin/index.php')) ?>" class="btn btn-accent btn-lg fw-semibold px-5">
+                    <i class="fa-solid fa-person-walking me-2"></i>Walk-in Photo
                 </a>
             </div>
         <?php endif; ?>

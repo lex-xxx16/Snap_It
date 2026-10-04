@@ -206,7 +206,6 @@ include __DIR__ . '/../includes/alert.php';
                 </div>
             <?php endif; ?>
 
-            <?php if ($photo_count > 0): ?>
             <div id="actionBar" class="card p-3 mt-4 no-print" style="display:none;">
                 <div class="text-center mb-2 fw-semibold">
                     <i class="fa-regular fa-circle-question me-1"></i>Keep this photo or retake?
@@ -224,7 +223,6 @@ include __DIR__ . '/../includes/alert.php';
                     </div>
                 </div>
             </div>
-            <?php endif; ?>
 
         </div>
     </div>
@@ -270,7 +268,7 @@ include __DIR__ . '/../includes/alert.php';
     const doneBtn = document.getElementById('doneBtn');
     const keepBtn = document.getElementById('keepBtn');
     const retakeBtn = document.getElementById('retakeBtn');
-    const photoDisplay = document.getElementById('photoDisplay');
+    let photoDisplay = document.getElementById('photoDisplay');
     const mainFrame = document.getElementById('mainFrame');
 
     mainFrame.style.borderColor = borderColor;
@@ -439,6 +437,7 @@ include __DIR__ . '/../includes/alert.php';
             mainFrame.appendChild(disp);
         }
         disp.innerHTML = html;
+        photoDisplay = disp;
         disp.style.display = '';
         if (video) video.style.display = 'none';
     }
