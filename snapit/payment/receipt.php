@@ -53,7 +53,7 @@ require __DIR__ . '/../includes/alert.php';
     <div class="receipt">
         <div class="text-center mb-3">
             <div style="font-size: 1.5rem; font-weight: bold; color: #1a120c;">
-                <i class="fa-solid fa-camera-retro me-1"></i>Snap It
+                <svg viewBox="0 0 32 26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1.5em;height:1.2em;vertical-align:-.2em;margin-right:8px"><path d="M10.6 5 12.3 2.4h7.4L21.4 5h5.1A3.5 3.5 0 0 1 30 8.5v12a3.5 3.5 0 0 1-3.5 3.5h-21A3.5 3.5 0 0 1 2 20.5v-12A3.5 3.5 0 0 1 5.5 5h5.1Z"/><circle cx="16" cy="14.2" r="5.4"/><circle cx="16" cy="14.2" r="2.1" fill="currentColor" stroke="none"/><circle cx="25.4" cy="9.4" r="1" fill="currentColor" stroke="none"/></svg>Snap It
             </div>
             <div style="font-size: 0.8rem; color: #555;">Photo Booth & Rental System</div>
             <div style="font-size: 0.85rem; font-weight: bold; margin-top: 8px; border-top: 1px dashed #444; border-bottom: 1px dashed #444; padding: 4px 0;">

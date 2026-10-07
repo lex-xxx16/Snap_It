@@ -73,7 +73,7 @@ include __DIR__ . '/includes/alert.php';
             <div class="card shadow-lg">
                 <div class="card-header text-center py-4">
                     <h2 class="mb-0">
-                        <i class="fa-solid fa-camera-retro me-2" style="color:var(--snapit-gold)"></i>
+                        <svg viewBox="0 0 32 26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1.4em;height:1.1em;vertical-align:-.12em;margin-right:10px;color:var(--snapit-gold)"><path d="M10.6 5 12.3 2.4h7.4L21.4 5h5.1A3.5 3.5 0 0 1 30 8.5v12a3.5 3.5 0 0 1-3.5 3.5h-21A3.5 3.5 0 0 1 2 20.5v-12A3.5 3.5 0 0 1 5.5 5h5.1Z"/><circle cx="16" cy="14.2" r="5.4"/><circle cx="16" cy="14.2" r="2.1" fill="currentColor" stroke="none"/><circle cx="25.4" cy="9.4" r="1" fill="currentColor" stroke="none"/></svg>
                         Snap It &mdash; Installer
                     </h2>
                     <p class="text-muted mb-0 mt-2">Photo Customization Booth and Rental System</p>

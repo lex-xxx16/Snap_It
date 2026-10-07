@@ -14,13 +14,14 @@ require_once __DIR__ . '/functions.php';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="<?= e(site_url('includes/style/style.css')) ?>" rel="stylesheet" type="text/css">
+    <link href="<?= e(site_url('includes/style/style.css')) ?>?v=<?= (int)@filemtime(__DIR__ . '/style/style.css') ?>" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
     <script src="<?= e(site_url('includes/strip.js')) ?>"></script>
     <script src="<?= e(site_url('includes/camfx.js')) ?>"></script>
     <meta name="theme-color" content="#120d09">
+    <link rel="icon" type="image/svg+xml" href="<?= e(site_url('includes/favicon.svg')) ?>">
     <title>Snap It &mdash; Luxury Photo Booth Experiences</title>
     <?php if (is_loggedin()): ?>
     <script>
@@ -37,7 +38,7 @@ require_once __DIR__ . '/functions.php';
 <nav class="navbar navbar-expand-lg navbar-snapit">
     <div class="container-fluid container-lg">
         <a class="navbar-brand" href="<?= e(site_url()) ?>" aria-label="Snap It — home">
-            <svg class="brand-mark" viewBox="0 0 26 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 16.5 9 3l5.5 9.5M11 16.5 17 6l7.5 10.5"/></svg>
+            <svg class="brand-mark" viewBox="0 0 32 26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.6 5 12.3 2.4h7.4L21.4 5h5.1A3.5 3.5 0 0 1 30 8.5v12a3.5 3.5 0 0 1-3.5 3.5h-21A3.5 3.5 0 0 1 2 20.5v-12A3.5 3.5 0 0 1 5.5 5h5.1Z"/><circle cx="16" cy="14.2" r="5.4"/><circle cx="16" cy="14.2" r="2.1" fill="currentColor" stroke="none"/><circle cx="25.4" cy="9.4" r="1" fill="currentColor" stroke="none"/></svg>
             <span>Snap It</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#snapitNavbar">
@@ -83,15 +84,93 @@ require_once __DIR__ . '/functions.php';
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= e(site_url('users/logout.php')) ?>">
+                        <a class="nav-link" href="<?= e(site_url('users/logout.php')) ?>" title="Log out" aria-label="Log out">
                             <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
                     </li>
                 <?php else: ?>
-                    <li class="nav-item"><a class="nav-link" href="<?= e(site_url('users/login.php')) ?>">Login</a></li>
-                    <li class="nav-item ms-lg-1"><a class="nav-link nav-cta" href="<?= e(site_url('users/register.php')) ?>">Register</a></li>
+                    <?php $auth_active = (basename($_SERVER['SCRIPT_NAME'] ?? '') === 'login.php') ? 'login' : 'register'; ?>
+                    <li class="nav-item ms-lg-1">
+                        <div class="auth-switch" role="group" aria-label="Account">
+                            <span class="auth-indicator" aria-hidden="true"></span>
+                            <a class="auth-link<?= $auth_active === 'login' ? ' active' : '' ?>" href="<?= e(site_url('users/login.php')) ?>">Login</a>
+                            <a class="auth-link<?= $auth_active === 'register' ? ' active' : '' ?>" href="<?= e(site_url('users/register.php')) ?>">Register</a>
+                        </div>
+                    </li>
                 <?php endif; ?>
             </ul>
         </div>
     </div>
 </nav>
+
+<?php if (is_loggedin()): ?>
+<!-- Logout confirmation -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm-down">
+        <div class="modal-content logout-modal text-center">
+            <div class="modal-body p-4 p-md-5">
+                <span class="logout-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                <h4 class="mb-2" id="logoutModalLabel">Leaving so soon?</h4>
+                <p class="text-muted mb-4">Do you really want to log out?</p>
+                <div class="d-flex gap-2 justify-content-center">
+                    <button type="button" class="btn btn-ghost px-4" data-bs-dismiss="modal">No, stay</button>
+                    <a href="<?= e(site_url('users/logout.php')) ?>" class="btn btn-snapit px-4" id="logoutConfirm">Yes, log out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Ask before logging out: "No" keeps the user on the page, "Yes" follows the logout link.
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest ? e.target.closest('a[href*="logout.php"]') : null;
+        if (!a || a.closest('#logoutModal')) return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        e.preventDefault();
+        var modal = document.getElementById('logoutModal');
+        if (!modal || typeof bootstrap === 'undefined') {
+            if (window.confirm('Do you really want to log out?')) { window.location.href = a.href; }
+            return;
+        }
+        document.getElementById('logoutConfirm').setAttribute('href', a.href);
+        bootstrap.Modal.getOrCreateInstance(modal).show();
+    });
+</script>
+<?php else: ?>
+<script>
+    // Login / Register switch: the white pill slides to whichever button was clicked.
+    (function () {
+        var sw = document.querySelector('.auth-switch');
+        if (!sw) return;
+        var ind = sw.querySelector('.auth-indicator');
+        var links = sw.querySelectorAll('.auth-link');
+        function current() { return sw.querySelector('.auth-link.active'); }
+        function place(link, animate) {
+            if (!link || !link.offsetWidth) return;
+            ind.style.transition = animate ? '' : 'none';
+            ind.style.width = link.offsetWidth + 'px';
+            ind.style.transform = 'translateX(' + link.offsetLeft + 'px)';
+            if (!animate) { void ind.offsetWidth; ind.style.transition = ''; }
+        }
+        function init() { place(current(), false); }
+        init();
+        window.addEventListener('load', init);
+        window.addEventListener('resize', init);
+        document.addEventListener('shown.bs.collapse', init);
+        if (document.fonts && document.fonts.ready) { document.fonts.ready.then(init); }
+        if (window.ResizeObserver) { new ResizeObserver(init).observe(sw); }
+        links.forEach(function (l) {
+            l.addEventListener('click', function (e) {
+                if (l.classList.contains('active')) return;
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                e.preventDefault();
+                links.forEach(function (x) { x.classList.remove('active'); });
+                l.classList.add('active');
+                place(l, true);
+                var href = l.href;
+                setTimeout(function () { window.location.href = href; }, 340);
+            });
+        });
+    })();
+</script>
+<?php endif; ?>
